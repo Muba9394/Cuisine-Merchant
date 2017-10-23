@@ -4,12 +4,12 @@
     xmlns:android = "http://schemas.android.com/apk/res/android"
     id        = "com.dreamguys.foodappmerchant"
     version   = "1.2">
-    <name>Food App Merchant</name>
+    <name>Cuisine Restaurant Manager</name>
     <description>
-        Food App Merchant
+        Restaurant Food Manager for Cuisine.JE
     </description>
-    <author email="dreamguystech@gmail.com" href="http://dreamguys.co.in/">
-        DreamGuy's
+    <author email="worldcuisine.je@gmail.com" href="http://www.cuisine.je">
+        ESH Solutions Limited
     </author>
     <icon src="icon.png" />           
     <content src="index.html" />
@@ -34,6 +34,10 @@
 	   <param name="API_KEY_FOR_ANDROID" value="AIzaSyDgi1x_nWPrveSQkkqBbnAvKTSUOGtf4BE" />
 	   <param name="API_KEY_FOR_IOS" value="XXX" />
 	</gap:plugin>-->
+	<gap:plugin spec="https://github.com/mapsplugin/cordova-plugin-googlemaps.git" source="git" >
+       <param name="API_KEY_FOR_ANDROID" value="AIzaSyC25RhPHKmvQTz7OzprugQyzWssMlvWKHA" />
+       <param name="API_KEY_FOR_IOS" value="AIzaSyC25RhPHKmvQTz7OzprugQyzWssMlvWKHA" />
+    </gap:plugin>
 	<plugin name="phonegap-plugin-push" spec="~1.10.0" />
 	<platform name="android">
 	  <resource-file src="project/google-services.json" target="google-services.json" />
