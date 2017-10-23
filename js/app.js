@@ -3139,8 +3139,8 @@ function InitMap()
 
 	setTimeout(function(){
 
-	     /*alert(getStorage("map_lat"));
-	     alert(getStorage("map_lng"));*/
+	     alert(getStorage("map_lat"));
+	     alert(getStorage("map_lng"));
 
 	     if (!isDebug()){
 	        var location = new plugin.google.maps.LatLng( getStorage("map_lat") , getStorage("map_lng") );
