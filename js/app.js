@@ -556,6 +556,7 @@ function callAjax(action,params)
 			    break;
 					
 				case "AcceptOrdes":
+					
 					if(getStorage("bt_con_dev")){
 						conDevice(getStorage("bt_con_dev"));
 					}else{
@@ -898,18 +899,27 @@ function getTrans(words,words_key)
 
 function login()
 {
-	$.validate({
-	    form : '#frm-login',
-	    borderColorOnError:"#FF0000",
-	    onError : function() {
-	    },
-	    onSuccess : function() {
-	      var params = $( "#frm-login").serialize();
-	      params+="&merchant_device_id="+getStorage("merchant_device_id");
-	      callAjax("login",params);
-	      return false;
-	    }
-	});
+    $.validate({
+        form : '#frm-login',
+        borderColorOnError:"#FF0000 ",
+        onError : function() {
+        },
+        onSuccess : function() {
+          var params = $("#frm-login").serialize(); 
+          var split_params = params.split("&"); 
+          params = '';
+          for(var i=0;i<split_params.length;i++){
+              var sub_params = split_params[i].split("=");
+              if(sub_params[0] == "password")
+              params += sub_params[0]+"="+window.btoa(sub_params[1])+"&";
+              else
+              params += split_params[i]+"&";
+          } 
+          params+="merchant_device_id="+getStorage("merchant_device_id");
+          callAjax("login",params);
+          return false;
+        }
+    });
 }
 
 function showForgotPass()
@@ -1737,6 +1747,12 @@ function printOrder(){
 
 function orderConfirm()
 { //$("#order-details-item").children().length
+	var time=$(".delivery_time").val();
+	if(time == "")
+	{
+		onsenAlert("Please Enter Time");
+	}
+	else{
 	clearTimeout(altpopup); 
 	//alert(getStorage("device_list"));
 	
@@ -1758,6 +1774,7 @@ function orderConfirm()
 	});
 	
 	
+	
 	setTimeout(function(){
 			if(getStorage("bt_con_dev")){
 			conDevice(getStorage("bt_con_dev"));
@@ -1767,7 +1784,7 @@ function orderConfirm()
 			}
 		//setTimeout(function(){kNavigator.pushPage("displayOrder.html", '');},3000);
 	},4000);
-
+	}
 
 
 
