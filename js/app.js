@@ -543,8 +543,18 @@ function callAjax(action,params)
 				case "OrderdDetails":
 				displayOrderDetails(data.details);
 				break;
-
+				
 				case "DeclineOrders":
+				   onsenAlert(data.msg);	
+			       toastMsg(data.msg);				   
+				   var options = {
+				      animation: 'none',
+				      onTransitionEnd: function() {
+				      }
+				    };
+				   kNavigator.resetToPage('slidemenu.html',options);
+			    break;
+					
 				case "AcceptOrdes":
 					if(getStorage("bt_con_dev")){
 						conDevice(getStorage("bt_con_dev"));
@@ -559,7 +569,9 @@ function callAjax(action,params)
 				      onTransitionEnd: function() {
 				      }
 				    };
-					notyAlert(data.msg,'error');
+					onsenAlert(data.msg);	
+					toastMsg(data.msg);
+					//notyAlert(data.msg,'error');
 					kNavigator.resetToPage('slidemenu.html',options);
 				break;
 
@@ -759,6 +771,7 @@ function callAjax(action,params)
 			    case "assignTask":
 				   onsenAlert(data.msg);	
 			       toastMsg(data.msg);
+				    kNavigator.resetToPage('slidemenu.html',options);
                    //kNavigator.popPage({cancelIfRunning: true});
 			    break;
 
@@ -1784,10 +1797,10 @@ function declineConfirm()
     var info=getMerchantInfoStorage();
     params+="&token="+getStorage("merchant_token");
     params+="&user_type="+info.user_type;
-    params+="&mtid="+info.merchant_id;
-
+    params+="&mtid="+info.merchant_id;	
+	
     callAjax("DeclineOrders",params);	   //setTimeout(function(){window.location.reload();},500);
-    kNavigator.pushPage("home.html", options); //After declining take to home page
+     //After declining take to home page
 
 }
 
