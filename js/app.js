@@ -3143,9 +3143,11 @@ function InitMap()
 	     alert(getStorage("map_lng"));
 
 	     if (!isDebug()){
-	        var location = new plugin.google.maps.LatLng( getStorage("map_lat") , getStorage("map_lng") );
+	        //var location = new plugin.google.maps.LatLng( getStorage("map_lat") , getStorage("map_lng") );
+			 var location = new google.maps.LatLng( getStorage("map_lat") , getStorage("map_lng") );
+			alert(location);
 	     }
-
+			
 	     switch ( map_actions )
 	     {
 	     	case "view_location":
@@ -3154,7 +3156,14 @@ function InitMap()
 	     	  $(".map-bottom-wrapper").hide();
 
 	     	  if (!isDebug()){
-		     	  map = plugin.google.maps.Map.getMap(div, {
+		     	/*  map = plugin.google.maps.Map.getMap(div, {
+			         'camera': {
+			         'latLng': location,
+			         'zoom': 17
+			        }
+			      });*/
+				  
+				  map = new google.maps.Map.getMap(div, {
 			         'camera': {
 			         'latLng': location,
 			         'zoom': 17
@@ -3167,15 +3176,17 @@ function InitMap()
 	        	  map.setCenter(location);
 	        	  map.setZoom(17);
 
-			      map.addEventListener(plugin.google.maps.event.MAP_READY, function(map) {
-
+			      //map.addEventListener(plugin.google.maps.event.MAP_READY, function(map) {
+					 map.addEventListener(new google.maps.event.MAP_READY, function(map) {
+						 
 	        	     map.addMarker({
 	        	     	 'position': location ,
 						  'title': getStorage("map_address") ,
 						 'snippet': getTrans( "Delivery ddress" ,'delivery_address'),
 						  }, function(marker) {
 						     marker.showInfoWindow();
-						     marker.setAnimation(plugin.google.maps.Animation.BOUNCE);
+						     //marker.setAnimation(plugin.google.maps.Animation.BOUNCE);
+							 marker.setAnimation(new google.maps.Animation.BOUNCE);
 	        	         }
 	        	     );
 
