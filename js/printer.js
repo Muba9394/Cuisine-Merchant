@@ -341,6 +341,7 @@ function conDevice(deviceId){
      bt.write(uint8array.buffer, deviceId,1);	
 	 //setTimeout(function(){window.location.reload();},1000);
 	 setTimeout(function(){
+	kloader.show();	 
 	 var options = {animation: 'none',onTransitionEnd: function() {}};
 	 kNavigator.resetToPage('slidemenu.html',options);
 	 },1000);

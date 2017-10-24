@@ -495,7 +495,7 @@ function callAjax(action,params)
 				case "none":
 				   break;
 				default:
-				   kloader.show();
+				   kloaderloader.show();
 				   break;
 			}
 		}
@@ -1753,9 +1753,10 @@ function orderConfirm()
 	var time=$(".delivery_time").val();
 	if(time == "")
 	{
-		onsenAlert("Please Enter Time");
+		onsenAlert("Please enter the collection time for this Order");
 	}
-	else{
+	else
+	{
 	clearTimeout(altpopup); 
 	//alert(getStorage("device_list"));
 	
