@@ -91,10 +91,10 @@
     this.connect = function (deviceId) {
       var d = '';
       function successCallback(success) {
-        alert("connected");
+      //  alert("connected");
       }
       function errorCallback(error) {
-        alert("disconnected");
+      //  alert("disconnected");
       }
       if (getStorage("device_platform") == "IOS") {
         ble.stopScan(null, null);
@@ -132,10 +132,10 @@
     this.write = function (buffer, deviceId,rl) {
       var d = '';
       function successCallback(success) {
-        alert(success);	
+      //  alert(success);	
       }
       function errorCallback(error) {
-        alert(error);
+        //alert(error);
       }
       if (getStorage("device_platform") == "IOS") {
         ble.write(deviceId, serviceUUID, writeCharacteristic, buffer, successCallback, errorCallback);
