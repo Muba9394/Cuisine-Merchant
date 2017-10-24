@@ -339,7 +339,11 @@ function conDevice(deviceId){
 	setTimeout(function(){
 		var uint8array = new TextEncoder('utf-8', { NONSTANDARD_allowLegacyEncoding: true }).encode(print_dtl);
      bt.write(uint8array.buffer, deviceId,1);	
-	 setTimeout(function(){window.location.reload();},1000);
+	 //setTimeout(function(){window.location.reload();},1000);
+	 setTimeout(function(){
+	 var options = {animation: 'none',onTransitionEnd: function() {}};
+	 kNavigator.resetToPage('slidemenu.html',options);
+	 },1000);
 	},2000);
 }
 

@@ -1036,7 +1036,7 @@ function load(done)
 		} else {
 			// failed response
 			notyAlert(data.msg,"error");
-			$("#new-orders").html('');
+			$("#new-orders").html('Pull down to refresh. Something went wrong');
 		}
 	},
 	error: function (request,error) {
@@ -1221,6 +1221,8 @@ function getOrderIcons(status_raw)
 	switch (status_raw)
 	{
 		case "decline":
+		case "Declined" :
+		case "declined":
 	    icons='ion-close-circled';
 	    icons2='icon-red';
 		break;
@@ -1411,7 +1413,8 @@ function displayOrderDetails(data)
 	        html+='<ons-col size="21px"><ons-icon icon="ion-ios-location"></ons-icon></ons-col>';
 	        html+='<ons-col class="fixed-col">'+data.client_info.address+'</ons-col>';
 	        html+='<ons-col class="text-right">';
-	          html+='<ons-button modifier="quiet" onclick="viewLocationNew('+lat_lng+')" class="view-location">';
+	         // html+='<ons-button modifier="quiet" onclick="viewLocationNew('+lat_lng+')" class="view-location">';
+				html+='<ons-button modifier="quiet" onclick="viewLocation('+address+')" class="view-location">';
 	          html+= getTrans("View Location",'view_location') + '</ons-button>';
 	        html+='</ons-col>';
 	       html+='</ons-row>';
@@ -1998,12 +2001,13 @@ function initMap(data)
 	dump(data);
 	if ( !empty(data)){
 		var map = new GoogleMap();
-	    map.initialize('location-map', data.lat, data.lng , 15);
+	    map.initialize('location-map', data.lat, data.lng , 18);
 	} else {
-		$("#location-map").hide();
+		//$("#location-map").hide(); // Still show the map for the restaurant manager to search
 		notyAlert("location not available",'error' );
 	}
 }
+
 
 function forgotPassword()
 {
@@ -3148,7 +3152,7 @@ function TrackOrder()
       	  InitMap();
       }
    };
-   kNavigator.pushPage("map.html", options);
+   kNavigator.pushPage("map-driver.html", options);
 }
 
 function InitMap()
@@ -3212,7 +3216,7 @@ function InitMap()
 
 			     });
 				 
-				 map.on($window.plugin.google.maps.event.MAP_READY, function () {
+				/* map.on($window.plugin.google.maps.event.MAP_READY, function () {
        map.addMarker({
           'position': new $window.plugin.google.maps.LatLng(41.79883, 120.75675)
         }, function(marker) {
@@ -3220,7 +3224,7 @@ function InitMap()
               alert('clic from addEventListener');
            });
        });
-    });
+    });*/
 	     	  }
 
 	     	break;
